@@ -31,6 +31,7 @@ export const contributeScreen = async (
   const relativeEndTime = getRelativeTimeString(campaign.status.ends_at)
 
   return c.res({
+    action: `/campaign/${campaignId}/finish`,
     image: (
       <div
         style={{

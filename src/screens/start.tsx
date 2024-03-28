@@ -13,12 +13,17 @@ export const homeScreen = async (c: FrameContext<Env, '/:campaignId'>) => {
 
   return c.res({
     image: (
+      campaign.metadata.photo_urls[0] ? 
       <div
         style={{
           ...backgroundStyles,
           backgroundImage: `url(${campaign.metadata.photo_urls[0]})`,
         }}
-      />
+      /> : 
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', width: '100%', height: '100%' }}>
+        <h1>{campaign.metadata.title}</h1>
+        <p>by <span>{campaign.creator.ens_name ?? campaign.creator.name}</span></p>
+      </div>
     ),
     intents: [
       <Button action={`/campaign/${campaignId}/contribute`}>
